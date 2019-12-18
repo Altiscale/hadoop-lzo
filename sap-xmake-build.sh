@@ -18,7 +18,7 @@ DATE_STRING=`date +%Y%m%d%H%M%S`
 #
 #------------------------------------------------------------------------------
 
-mvn versions:set -DnewVersion=0.4.18-${DATE_STRING}
+mvn versions:set -DnewVersion=${XMAKE_PROJECT_VERSION}-sap
 
 if [ "$RUN_UNIT_TESTS" == "true" ]; then
   mvn clean package
@@ -40,8 +40,9 @@ fi
 ARTIFACT_DIR="$MY_DIR/hadoop-lzo-artifacts"
 mkdir --mode=0755 -p ${ARTIFACT_DIR}
 
-mv $MY_DIR/target/hadoop-lzo-[0-9]*.[0-9]*.[0-9]*-[0-9]*[0-9].jar $ARTIFACT_DIR/hadoop-lzo-${XMAKE_PROJECT_VERSION}.jar
+mv $MY_DIR/target/hadoop-lzo-${XMAKE_PROJECT_VERSION}-sap.jar $ARTIFACT_DIR/hadoop-lzo-${XMAKE_PROJECT_VERSION}-sap.jar
 cd $MY_DIR/target/native/Linux-amd64-64/
-tar -czvf "$ARTIFACT_DIR/hadoop-lzo-libgplcompression-${XMAKE_PROJECT_VERSION}.tar.gz" lib/
+tar -czvf "$ARTIFACT_DIR/hadoop-lzo-libgplcompression-${XMAKE_PROJECT_VERSION}-sap.tar.gz" lib/
 
+echo "XMAKE_PROJECT_VERSION is ${XMAKE_PROJECT_VERSION}"
 exit 0
