@@ -10,6 +10,7 @@ echo "[INFO] Executing in ${MY_DIR}"
 export M2_HOME=/opt/mvn3
 export JAVA_HOME=/opt/sapjvm_7
 export PATH=$M2_HOME/bin:$JAVA_HOME/bin:$PATH
+DATE_STRING=$(date +%Y%m%d%H%M%S)
 
 #------------------------------------------------------------------------------
 #
@@ -17,7 +18,7 @@ export PATH=$M2_HOME/bin:$JAVA_HOME/bin:$PATH
 #
 #------------------------------------------------------------------------------
 
-mvn versions:set -DnewVersion="${XMAKE_PROJECT_VERSION}"-sap
+mvn versions:set -DnewVersion="${XMAKE_PROJECT_VERSION}-${DATE_STRING}"
 
 if [ "$RUN_UNIT_TESTS" == "true" ]; then
   mvn clean package
@@ -39,7 +40,7 @@ fi
 ARTIFACT_DIR="$MY_DIR"/hadoop-lzo-artifacts
 mkdir --mode=0755 -p "${ARTIFACT_DIR}"
 
-mv "$MY_DIR"/target/hadoop-lzo-"${XMAKE_PROJECT_VERSION}"-sap.jar "${ARTIFACT_DIR}"/hadoop-lzo-"${XMAKE_PROJECT_VERSION}"-sap.jar
+mv "$MY_DIR"/target/hadoop-lzo-"${XMAKE_PROJECT_VERSION}"-"${DATE_STRING}".jar "${ARTIFACT_DIR}"/hadoop-lzo-"${XMAKE_PROJECT_VERSION}"-sap.jar
 cd "$MY_DIR"/target/native/Linux-amd64-64/ || exit
 tar -czvf "${ARTIFACT_DIR}"/hadoop-lzo-libgplcompression-"${XMAKE_PROJECT_VERSION}"-sap.tar.gz lib/
 
