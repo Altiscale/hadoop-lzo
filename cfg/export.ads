@@ -6,7 +6,7 @@ artifacts builderVersion: "1.1", {
       file "$gendir/src/hadoop-lzo-artifacts/hadoop-lzo-${buildVersion}-sap.jar", extension: "jar"
     }
     artifact "hadoop-lzo-libgplcompression", {
-      file "$gendir/src/hadoop-lzo-artifacts/hadoop-lzo-libgplcompression-${buildVersion}-sap.tar.gz"
+      file "$gendir/src/hadoop-lzo-artifacts/hadoop-lzo-libgplcompression-${buildVersion}-sap.tar.gz", extension:"tar.gz"
     }
   }
 }
