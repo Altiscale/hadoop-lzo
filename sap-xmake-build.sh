@@ -20,11 +20,7 @@ DATE_STRING=$(date +%Y%m%d%H%M%S)
 
 mvn versions:set -DnewVersion="${XMAKE_PROJECT_VERSION}-${DATE_STRING}"
 
-if [ "$RUN_UNIT_TESTS" == "true" ]; then
-  mvn clean package
-else
-  mvn clean package -DskipTests
-fi
+mvn clean package
 
 # fail-fast if maven build fails
 if [[ "$?" -ne 0 ]] ; then
